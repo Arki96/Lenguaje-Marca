@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" >
+    <channel>
+        <atom:link href="https://www.ejemplo.com/rss" type="application/rss+xml" />
+        <title>Noticias de Tecnología 2025</title>
+        <link>https://www.ejemplo.com/rss</link>
+        <description>Las noticias más relevantes del mundo tecnológico.</description>
+        <language>es</language>
+        <pubDate>Wed, 02 Oct 2002 08:00:00 EST</pubDate>
+        <lastBuildDate>Wed, 02 Oct 2002 08:00:00 EST</lastBuildDate>
+        <image>
+            <url>https://www.elfinanciero.com.mx/tech/que-nos-depara-el-mundo-tecnologico-5-tendencias-para-el-2021/</url>
+            <title>Noticias de Tecnología 2025</title>
+            <link>https://www.ejemplo.com/rss</link>
+        </image>
+        <item>
+            <title>Lanzamiento de un nuevo chip para IA</title>
+            
+            <link>https://www.ejemplo.com/chip-ia</link>
+            <description>El nuevo chip promete revolucionar las capacidades de procesamiento en inteligencia artificial.</description>
+            <pubDate>Wed, 02 Oct 2002 08:00:00 EST</pubDate>
+            <guid>https://www.ejemplo.com/chip-ia</guid>
+            <category>Tecnología</category>     
+        </item>
+ 
+        <item>
+            <title>Las startups más innovadoras de 2025</title>
+            <link>https://www.ejemplo.com/startups-2025</link>
+            <description>Un vistazo a las empresas emergentes que están transformando la industria tecnológica.</description>
+            <pubDate>Wed, 02 Oct 2002 08:00:00 EST</pubDate>
+            <category>Emprendimiento</category>
+            <comments>https://www.ejemplo.com/startups-2025#comentarios</comments>
+        </item>
+        <item>
+            <title>DeepSeek domina el mercado de la IA</title>
+            <link>https://www.ejemplo.com/startups-2025</link>
+            <description>Un vistazo a las empresas emergentes que están transformando la industria tecnológica.</description>
+            <pubDate>Wed, 02 Oct 2002 08:00:00 EST</pubDate>
+            <category>Novedades tecnológicas</category>
+            <author>marco_arki@alumnos.alborfp.com (Marco Antonio Muñoz)</author>
+        </item>
+
+    </channel>
+</rss>
