@@ -1,0 +1,467 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%; /* Asegura que ocupe todo el ancho de la pantalla */
+    height: 100%; /* Asegura que ocupe todo el alto de la pantalla */
+    overflow-x: hidden; /* Evita el desplazamiento horizontal */
+    box-sizing: border-box; /* Incluye el padding y el borde en el tamaño total */
+    background-color: #FFD77F; /* Fondo oscuro */
+    color: #050505; /* Texto claro */
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr); /* Ajusta las columnas según tu diseño */
+    grid-template-rows: repeat(10, 1fr); /* Ajusta las filas según tu diseño */
+    grid-gap: 0px; /* Elimina cualquier espacio entre las filas y columnas */
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+    height: 100%; /* Asegura que ocupe todo el alto disponible */
+}
+
+/* Regla general para todos los div dentro de .parent */
+.container div {
+    background-color: #CFD3E8; /* Color uniforme para todos los div */
+    border-radius: 10px; /* Bordes redondeados */
+    border: 1px solid black; /* Agrega un borde para visualizar los div */
+    box-sizing: border-box; /* Incluye el padding y el borde en el tamaño total */
+}
+
+.div2 {
+    grid-area: 3 / 1 / 6 / 3;
+    
+}
+    .div2 h1{
+        text-align: center;
+
+    }
+    .div2 li{       
+        padding: 3%;
+    }
+    .menu-lista a.active {
+        color: rgb(57, 96, 112); /* Cambia el color del texto */
+        font-weight: bold; /* Hace el texto más grueso */
+        text-decoration: underline; /* Subraya el enlace */
+    }
+    @media (max-width: 768px) {
+        .div2 {
+            padding-left: 0px; /* Mueve todo el contenido del div2 hacia la izquierda */
+        }
+    
+        .div2 li {
+            padding-left: 0; /* Elimina el padding adicional de los elementos de la lista */
+        }
+    
+        .menu-lista {
+            padding-left: 5px; /* Ajusta el espacio hacia la izquierda para la lista */
+        }
+    }
+    /* Estilo general del menú */
+.menu-lista {
+    list-style: none; /* Elimina los puntos de la lista */
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column; /* Asegura que los elementos estén en columna */
+    width: 100%; /* Asegura que el menú ocupe todo el ancho del div */
+    background: none; /* Elimina cualquier fondo */
+    margin-bottom: center; /* Centra el menú horizontalmente */
+    text-align: center; /* Centra el texto dentro del menú */
+}
+
+.menu-lista li a {
+    text-decoration: none;
+    color: #333; /* Color del texto */
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    display: block; /* Asegura que los enlaces ocupen todo el ancho disponible */
+}
+
+.menu-lista li a:hover {
+    background-color: #ddd; /* Fondo al pasar el cursor */
+}
+
+.menu-lista li a.active {
+    color: #7B67E8; /* Cambia el color del texto del enlace activo */
+    font-weight: bold; /* Hace el texto más grueso */
+    text-decoration: underline; /* Subraya el enlace activo */
+}
+
+/* Oculta el menú por defecto en pantallas pequeñas */
+@media (max-width: 768px) {
+    .menu-lista {
+        display: none; /* Oculta el menú */
+        flex-direction: column; /* Cambia a diseño vertical */
+        background-color: #f5f5f5; /* Fondo del menú desplegable */
+        position: absolute;
+        top: 50px; /* Ajusta según la posición del botón */
+        left: 0;
+        width: 100%; /* Ocupa todo el ancho */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+    }
+
+    .menu-lista.active {
+        display: flex; /* Muestra el menú cuando está activo */
+    }
+
+    .menu-toggle {
+        display: block; /* Muestra el botón de menú */
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: #333;
+        margin: 10px 0;
+    }
+
+    .div2 h1 {
+        display: none; /* Oculta el h1 en pantallas pequeñas */
+    }
+}
+
+/* En pantallas grandes, muestra el menú y el h1 normalmente */
+@media (min-width: 769px) {
+    .menu-lista {
+        display: flex; /* Muestra el menú horizontalmente */
+    }
+
+    .menu-toggle {
+        display: none; /* Oculta el botón de menú */
+    }
+
+    .div2 h1 {
+        display: block; /* Muestra el h1 */
+    }
+}
+.div4 {
+    grid-area: 10 / 3 / 11 / 10;
+    text-align: center;
+}
+
+.div5 {
+    grid-area: 1 / 3 / 3 / 10;
+    
+}
+    .div5 h1{
+        text-align: center;
+        padding-top: 20px;
+    }
+
+/* Regla específica para div6 */
+.div6 {
+    
+    display: flex; /* Usa Flexbox para alinear el contenido */
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: center; /* Centra el contenido verticalmente */
+    grid-area: 4 / 3 / 10 / 10; /* Ocupa el área combinada de los cuatro div */
+    background-color: #7B67E8 !important; /* Fondo gris oscuro */
+    
+    border-radius: 10px; /* Bordes redondeados */
+    padding: 20px; /* Espaciado interno */
+    box-sizing: border-box; /* Incluye el padding en el tamaño total */
+    flex-direction: column; /* Cambia la dirección a columna para apilar los elementos */
+}
+    .div6 p{
+        color: rgb(0, 0, 0); /* Cambia el color del texto a blanco */
+        font-size: 1.2rem; /* Ajusta el tamaño de la fuente */
+        text-align: center; /* Centra el texto */
+        margin: 0; /* Elimina el margen por defecto */
+        padding: 20px; /* Agrega un poco de padding para separación */
+        background-color: #FFFBB7; /* Fondo oscuro para el encabezado */
+        border-radius: 10px; /* Bordes redondeados */
+    }
+    .div6 h4 {
+        color: rgb(0, 0, 0); /* Cambia el color del texto a blanco */
+        font-size: 1.5rem; /* Ajusta el tamaño de la fuente */
+        text-align: center; /* Centra el texto */ 
+        margin: 0; /* Elimina el margen por defecto */
+        padding: 20px; /* Agrega un poco de padding para separación */
+        font-weight: bold; /* Hace el texto más grueso */
+        text-decoration: underline; /* Subraya el texto */
+        text-transform: uppercase; /* Convierte el texto a mayúsculas */
+        font-family: 'Arial', sans-serif; /* Cambia la fuente a Arial */
+        letter-spacing: 1px; /* Espaciado entre letras */
+        line-height: 1.5; /* Mejora el espaciado entre líneas */
+        background-color: #FFFBB7; /* Fondo oscuro para el encabezado */
+        border-radius: 10px; /* Bordes redondeados */
+        padding: 20px; /* Espaciado interno */
+        box-sizing: border-box; /* Incluye el padding en el tamaño total */
+        margin-bottom: 10px; /* Espacio inferior para separar del contenido siguiente */
+        width: 90%; /* Ajusta el ancho del encabezado */
+        max-width: 800px; /* Establece un ancho máximo */
+        display: block; /* Asegura que el encabezado ocupe todo el ancho disponible */
+    
+    }
+    /* Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+    .div6 h4 {
+        font-size: 1.2rem; /* Reduce el tamaño del texto */
+        margin-bottom: 10px; /* Agrega un margen inferior */
+        display:none; /* Oculta el encabezado en pantallas pequeñas */
+    }
+
+    .div6 p {
+        
+        font-size: 18px; /* Ajusta el tamaño de los párrafos */
+        line-height: 1.4; /* Ajusta el espaciado entre líneas */
+    }
+}
+
+/* Ajustes para pantallas muy pequeñas */
+@media (max-width: 480px) {
+    .div6 h4 {
+        font-size: 1rem; /* Reduce aún más el tamaño del texto */
+        margin-bottom: 5px; /* Reduce el margen inferior */
+        display: none; /* Oculta el encabezado en pantallas muy pequeñas */
+    }
+
+    .div6 p {
+        font-size: 0.9rem; /* Reduce el tamaño de los párrafos */
+    }
+}
+.div7 {
+    grid-area: 3 / 3 / 4 / 10;
+    background-color: #ffffff !important;
+}
+    .breadcrumbs {
+        margin-top:15px;
+        padding: 10px;
+        background-color: #f5f5f5; /* Fondo claro para las migas de pan */
+        border-radius: 5px; /* Bordes redondeados */
+        font-size: 14px; /* Tamaño de fuente */
+    }
+
+    .breadcrumbs ul {
+        list-style: none; /* Elimina los puntos de la lista */
+        padding: 0;
+        margin: 0;
+        display: flex; /* Muestra los elementos en línea */
+        gap: 10px; /* Espaciado entre los elementos */
+    }
+
+    .breadcrumbs li {
+        display: inline; /* Asegura que los elementos estén en línea */
+    }
+
+    .breadcrumbs a {
+        text-decoration: none; /* Elimina el subrayado de los enlaces */
+        color: #000000; /* Color azul para los enlaces */
+    }
+
+    .breadcrumbs a:hover {
+        text-decoration: underline; /* Subraya el enlace al pasar el cursor */
+    }
+
+    .breadcrumbs li::after {
+        content: "›"; /* Agrega un separador entre los elementos */
+        margin: 0 5px;
+        color: #ffffff; /* Color gris para el separador */
+    }
+
+    .breadcrumbs li:last-child::after {
+        content: ""; /* Elimina el separador del último elemento */
+    }
+    .breadcrumbs a.active {
+        color: #7B67E8; /* Cambia el color del texto */
+        font-weight: bold; /* Hace el texto más grueso */
+        text-decoration: underline; /* Subraya el enlace */
+    }
+
+.calculadora {
+    display: grid;
+    grid-template-rows: 1fr 4fr; /* La pantalla ocupa 1 parte, los botones 4 partes */
+    width: 90%; /* Ajusta el ancho de la calculadora (puedes reducir este valor) */
+    max-width: 300px; /* Establece un ancho máximo para evitar que sea demasiado ancha */
+    height: 100%; /* Ocupa todo el alto del div6 */
+    background-color: #FFFBB7 !important;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    box-sizing: border-box; /* Asegura que el padding no afecte el tamaño total */
+    margin: 0 auto; /* Centra la calculadora horizontalmente */
+}
+
+.pantalla {
+    background-color: #CFD3E8 !important;
+    color: #000000;
+    font-size: 1.2rem; /* Ajusta el tamaño de la fuente para que encaje */
+    text-align: right;
+    padding: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+    display: flex;
+    align-items: center; /* Centra verticalmente el texto */
+    justify-content: flex-end; /* Alinea el texto a la derecha */
+}
+
+.botones {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columnas iguales */
+    grid-auto-rows: 1fr; /* Los botones se ajustan automáticamente */
+    gap: 10px;
+}
+
+.boton {
+    background-color: #444; /* Fondo oscuro */
+    color: #fff; /* Texto blanco */
+    font-size: 1rem; /* Tamaño de fuente */
+    border: none; /* Sin bordes */
+    border-radius: 5px; /* Bordes redondeados */
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Transición suave */
+    display: flex;
+    align-items: center; /* Centra el texto verticalmente */
+    justify-content: center; /* Centra el texto horizontalmente */
+}
+
+.boton:hover {
+    background-color: #555; /* Fondo más claro al pasar el cursor */
+}
+
+.boton.operador {
+    background-color: #f57c00;
+}
+
+.boton.operador:hover {
+    background-color: #e65100;
+}
+
+.boton.cero {
+    grid-column: span 2; /* El botón "0" ocupa dos columnas */
+}
+
+.boton-parentesis {
+    background-color: #444; /* Fondo igual que los otros botones */
+    color: #fff; /* Texto blanco */
+    border: 1px solid #444; /* Borde del mismo color que el fondo */
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s; /* Transición suave */
+}
+
+.boton-parentesis:hover {
+    background-color: #555; /* Igual que el hover de los otros botones */
+    border-color: #555; /* Cambia el color del borde al pasar el cursor */
+}
+
+.lista-formulas {
+    list-style-type: none; /* Elimina los puntos de la lista */
+    padding: 0;
+    margin: 0 auto; /* Centra la lista horizontalmente */
+    font-size: 20px; /* Aumenta el tamaño de la fuente */
+    line-height: 2; /* Mejora el espaciado entre líneas */
+    text-align: center; /* Centra el texto */
+    color: white; /* Cambia el color del texto a blanco */
+}
+
+.lista-formulas li {
+    margin-bottom: 20px; /* Aumenta el espaciado entre las fórmulas */
+}
+
+.lista-formulas strong {
+    color: white; /* Cambia el color del título a blanco */
+    font-weight: bold;
+    font-size: 22px; /* Aumenta el tamaño de los títulos */
+}
+
+.lista-formulas span {
+    color: white; /* Cambia el color del contenido de la fórmula a blanco */
+    font-style: italic;
+    font-size: 20px; /* Aumenta el tamaño del contenido */
+}
+
+
+
+footer {
+    background-color: #FFD77F;
+    text-align: center; /* Centra el texto */
+    padding: 10px; /* Espaciado interno */
+    font-size: 14px; /* Tamaño de fuente */
+    color: #000000 /* Texto gris oscuro */
+    border-top: 1px solid #ccc; /* Línea superior para separar el footer */
+    border-radius: 10px; /* Bordes redondeados */
+}
+/* Ajusta el tamaño de la tabla */
+#tabla-formulas {
+    width: 90%; /* Reduce el ancho al 90% del contenedor */
+    max-width: 800px; /* Establece un ancho máximo */
+    margin: 0 auto; /* Centra la tabla horizontalmente */
+    border-collapse: collapse; /* Elimina los espacios entre bordes */
+    box-sizing: border-box; /* Incluye el padding en el tamaño total */
+}
+
+/* Ajusta las celdas de la tabla */
+#tabla-formulas th, #tabla-formulas td {
+    text-align: left;
+    padding: 10px;
+    border: 1px solid #ddd; /* Bordes ligeros */
+}
+
+/* Encabezado de la tabla */
+#tabla-formulas th {
+    background-color: #f5f5f5; /* Fondo claro para el encabezado */
+    font-weight: bold;
+}
+
+/* Ajusta el contenedor de DataTables */
+.dataTables_wrapper {
+    display: flex;
+    flex-direction: column; /* Asegura que la tabla y los botones estén en columna */
+    align-items: center; /* Centra todo horizontalmente */
+    justify-content: center; /* Centra todo verticalmente */
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+    max-width: 800px; /* Establece un ancho máximo */
+    margin: 0 auto; /* Centra el contenedor horizontalmente */
+    text-align: center; /* Centra el texto dentro del contenedor */
+}
+
+/* Centra los botones de paginación */
+.dataTables_paginate {
+    display: flex;
+    justify-content: center; /* Centra los botones horizontalmente */
+    align-items: center; /* Asegura que los botones estén alineados verticalmente */
+    margin: 10px auto; /* Agrega espacio superior e inferior y centra horizontalmente */
+    width: fit-content; /* Ajusta el ancho al contenido de los botones */
+}
+
+/* Estilo de los botones de paginación */
+.dataTables_paginate .paginate_button {
+    background-color: #444; /* Fondo oscuro */
+    color: #fff; /* Texto blanco */
+    border: none; /* Sin bordes */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 5px 10px; /* Espaciado interno */
+    margin: 0 5px; /* Espaciado entre los botones */
+    cursor: pointer;
+    transition: background-color 0.3s; /* Transición suave */
+}
+
+.dataTables_paginate .paginate_button:hover {
+    background-color: #555; /* Fondo más claro al pasar el cursor */
+}
+
+.dataTables_paginate .paginate_button.current {
+    background-color: #f57c00; /* Fondo naranja para el botón activo */
+    color: #fff; /* Texto blanco */
+    font-weight: bold;
+}
+
+button {
+    background-color: #0056b3; /* Azul oscuro */
+    color: #fff; /* Texto blanco */
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #004494; /* Azul más oscuro */
+}
+
+button:focus, a:focus {
+    outline: 2px solid #f7c948; /* Resalta el elemento enfocado */
+    outline-offset: 2px;
+}
+
+

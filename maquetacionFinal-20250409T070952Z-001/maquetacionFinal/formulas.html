@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fórmulas Matemáticas</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Menú Lateral -->
+    <div class="div2">
+      <h1><u>Menú</u></h1>
+      <button class="menu-toggle">☰</button> <!-- Botón para abrir/cerrar el menú -->
+      <ul class="menu-lista">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="calculadora.html">Calculadora</a></li>
+        <li><a class="active">Fórmulas</a></li>
+      </ul>
+    </div>
+
+    <!-- Cabecera -->
+    <div class="div5">
+      <h1><u>Fórmulas Matemáticas</u></h1>
+    </div>
+
+    <!-- Tabla de Fórmulas -->
+    <div class="div6">
+      <table id="tabla-formulas" class="display">
+        <thead>
+          <tr>
+            <th>Fórmula</th>
+            <th>Expresión</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Área de un rectángulo:</strong></td>
+            <td><span>A = b × h</span></td>
+          </tr>
+          <tr>
+            <td><strong>Perímetro de un rectángulo:</strong></td>
+            <td><span>P = 2 × (b + h)</span></td>
+          </tr>
+          <tr>
+            <td><strong>Área de un triángulo:</strong></td>
+            <td><span>A = (b × h) / 2</span></td>
+          </tr>
+          <tr>
+            <td><strong>Promedio de números:</strong></td>
+            <td><span>P = (n1 + n2 + n3 + ...) / cantidad</span></td>
+          </tr>
+          <tr>
+            <td><strong>Velocidad:</strong></td>
+            <td><span>v = d / t</span></td>
+          </tr>
+          <tr>
+            <td><strong>Densidad:</strong></td>
+            <td><span>ρ = m / V</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Migas de Pan -->
+    <div class="div7">
+      <nav class="breadcrumbs">
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="calculadora.html">Calculadora</a></li>
+          <li><a class="active">Fórmulas</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- Pie de Página -->
+    <footer class="div4">
+      <p>© 2025 - Autor: Marco Antonio Muñoz Aragón</p>
+    </footer>
+  </div>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- DataTables JS -->
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+  <script src="scripts.js"></script>
+</body>
+</html>
