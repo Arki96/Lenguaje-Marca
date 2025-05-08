@@ -1,2 +1,0 @@
-juegodos.Guerrero
-juegodos.Chaman
