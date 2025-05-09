@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Asking Alexandria</title>
+    <link rel="stylesheet" href="CSS/styles.css">
+</head>
+<header>
+    <h1 class="titulo">ASKING ALEXANDRIA</h1>
+    <img class="imagen" alt="foto del grupo de musica" src="IMG/grupo.png">
+</header>
+<body>
+    <div class="acordeon">
+        <p class="texto">Asking Alexandria es una banda británica de metalcore formada en York, North Yorkshire, en 2008. El grupo es conocido por su sonido agresivo y enérgico, que combina elementos de metalcore, post-hardcore y metal electrónico. A lo largo de su carrera, han experimentado con diversos estilos musicales, desde el metalcore más crudo de sus primeros álbumes hasta sonidos más melódicos y accesibles en sus trabajos más recientes. </p>
+        <h2>Próximos conciertos</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Lugar</th>
+                    <th>Hora</th>
+                    <th>Precio</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>20 de Octubre de 2025</td>
+                    <td>Sala La Riviera, Madrid</td>
+                    <td>21:00</td>
+                    <td>30€</td>
+                </tr>
+                <tr>
+                    <td>25 de Octubre de 2025</td>
+                    <td>Razzmatazz, Barcelona</td>
+                    <td>20:30</td>
+                    <td>28€</td>
+                </tr>
+                <tr>
+                    <td>30 de Octubre de 2025</td>
+                    <td>Sala Gamma, Murcia</td>
+                    <td>22:00</td>
+                    <td>25€</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="acordeon__item">
+            
+            <div class="acordeon__contenido">
+                <div id="formulario-contenedor" onsubmit="enviarFormularioEntradas(event)">
+                    <form id="compraEntradas">
+                    <fieldset>
+                        <legend>Datos Personales</legend>
+                        <label for="nombre">Nombre:</label><br>
+                        <input type="text" id="nombre" name="nombre" placeholder="Escribe tu nombre" required>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Detalles del Concierto</legend>
+                        <label for="fecha">Fecha:</label><br>
+                        <input type="date" id="fecha" name="fecha" value="2025-10-20" required><br><br>
+
+                        <label for="lugar">Lugar:</label><br>
+                        <select id="lugar" name="lugar" required>
+                            <option value="Madrid">Madrid</option>
+                            <option value="Barcelona">Barcelona</option>
+                            <option value="Murcia">Murcia</option>
+                        </select><br><br>
+
+                        <label for="cantidad">Cantidad:</label><br>
+                        <input type="number" id="cantidad" name="cantidad" value="1" min="1" max="5" required><br><br>
+
+                        <label for="categoria">Categoría:</label><br>
+                        <select id="categoria" name="categoria" required>
+                            <option value="general">General</option>
+                            <option value="vip">VIP</option>
+                        </select>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Método de Pago</legend>
+                        <ul style="list-style-type: none; padding: 0;">
+                            <li>
+                                <input type="radio" id="tarjeta" name="metodo_pago" value="tarjeta" checked>
+                                <label for="tarjeta">
+                                    
+                                    Tarjeta de Crédito/Débito
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio" id="paypal" name="metodo_pago" value="paypal">
+                                <label for="paypal">
+
+                                    PayPal
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio" id="transferencia" name="metodo_pago" value="transferencia" class="pago">
+                                <label for="transferencia">
+                                    
+                                    Transferencia Bancaria
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio" id="criptomoneda" name="metodo_pago" value="criptomoneda" class="pago">
+                                <label for="criptomoneda">
+                                    
+                                    Criptomoneda
+                                </label>
+                            </li>
+                        </ul>
+                    </fieldset>
+
+                    <label><input type="checkbox" name="terminos" required> Acepto los términos y condiciones</label><br><br>
+
+                    <button type="submit">Confirmar Compra</button>
+                </form>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <script src="JS/script.js"></script>
+    <style>
+        body {
+            background-color: gray;
+            color: white;
+        }
+    </style>
+</body>
+</html>
