@@ -6,20 +6,24 @@ package com.mycompany.examen_3t_prueba;
 
 /**
  *
-CREATE DATABASE your_database;
-
-USE your_database;
-
+-- crear la tabla de clientes
 CREATE TABLE clients (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100),
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(100),
+    apellidos VARCHAR(100),
+    direccion VARCHAR(255),
+    dni VARCHAR(20),
     email VARCHAR(100)
 );
 
+-- crear la tabla de pedidos
 CREATE TABLE orders (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     client_id INT,
-    product VARCHAR(100),
+    product_name VARCHAR(100),
+    quantity INT,
+    unit_price DECIMAL(10, 2),
+    total_price DECIMAL(10, 2),
     FOREIGN KEY (client_id) REFERENCES clients(id)
 );
  */

@@ -9,21 +9,51 @@ package com.mycompany.examen_3t_prueba;
  * @author Usuario
  */
 public class Client extends Entity {
-    private String name;
+    private String nombre;
+    private String apellidos;
+    private String direccion;
+    private String dni;
     private String email;
 
-    public Client(int id, String name, String email) {
+    public Client(int id, String nombre, String apellidos, String direccion, String dni, String email) {
         super(id);
-        this.name = name;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.direccion = direccion;
+        this.dni = dni;
         this.email = email;
     }
 
-    public String getName() {
-        return name;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
     }
 
     public String getEmail() {
