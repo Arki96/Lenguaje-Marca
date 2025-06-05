@@ -1,662 +1,78 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-<title>Test de Informática</title>
-<!-- Firebase SDK v9 (compatibilidad) -->
-<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database-compat.js"></script>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap');
-  html, body {
-    margin: 0; padding: 0;
-    font-family: 'Comic Neue', cursive, sans-serif;
-    background: linear-gradient(135deg, #fceabb, #f8b500);
-    color: #222;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    overflow: hidden;
-  }
-  body { padding: 10px; }
-
-  #app, #start-screen, #test-screen {
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-    width: 90vw;
-    max-width: 900px;
-    max-height: 600px;
-    overflow: hidden;
-    padding: 25px 35px 50px 35px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-  }
-
-  #test-screen {
-    display: none;
-    flex-grow: 1;
-  }
-
-  h1 {
-    text-align: center;
-    color: #e8590c;
-    margin-bottom: 20px;
-    font-size: 2rem;
-    text-shadow: 2px 2px #e2a127;
-  }
-
-  #start-screen h1 {
-    margin-top: auto;
-    margin-bottom: 20px;
-  }
-
-  #name-input {
-    font-size: 1.4rem;
-    padding: 12px 14px;
-    border-radius: 14px;
-    border: 3px solid #f8b500;
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto 40px;
-    box-sizing: border-box;
-    font-family: 'Comic Neue', cursive, sans-serif;
-    font-weight: 700;
-    text-align: center;
-    transition: border-color 0.3s ease;
-  }
-  #name-input:focus {
-    border-color: #e8590c;
-    outline: none;
-  }
-
-  #start-btn {
-    background: #e8590c;
-    border: none;
-    color: white;
-    font-weight: 700;
-    font-size: 2.4rem;
-    padding: 30px 0;
-    border-radius: 30px;
-    cursor: pointer;
-    box-shadow: 0 8px 20px #d35400cc;
-    user-select: none;
-    transition: background-color 0.3s ease;
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto 50px;
-    display: block;
-  }
-  #start-btn:hover {
-    background: #cc4e0a;
-  }
-
-  #question-container {
-    flex-grow: 1;
-    background: #fffcf7;
-    border: 3px solid #f8b500;
-    border-radius: 16px;
-    box-shadow: 0 6px 12px #f9d77e;
-    padding: 20px 30px;
-    font-weight: 700;
-    font-size: 1.3rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-  }
-
-  #question-text {
-    margin-bottom: 20px;
-  }
-
-  .options {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    margin-left: 6px;
-  }
-
-  label.option-label {
-    background: #fff2cc;
-    border-radius: 14px;
-    padding: 12px 18px;
-    cursor: pointer;
-    user-select: none;
-    box-shadow: 1px 1px 6px #f7c948cc;
-    transition: background-color 0.3s ease;
-    display: flex;
-    align-items: center;
-    font-size: 1.15rem;
-  }
-
-  label.option-label:hover {
-    background: #ffea85;
-  }
-
-  input[type="radio"] {
-    margin-right: 14px;
-    cursor: pointer;
-  }
-
-  #navigation {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 25px;
-    gap: 10px;
-  }
-
-  button {
-    background: #e8590c;
-    border: none;
-    color: white;
-    font-weight: 700;
-    font-size: 1.15rem;
-    padding: 14px 30px;
-    border-radius: 25px;
-    cursor: pointer;
-    box-shadow: 0 6px 14px #d35400cc;
-    user-select: none;
-    transition: background-color 0.3s ease;
-    min-width: 120px;
-  }
-
-  button:hover:not(:disabled) {
-    background: #cc4e0a;
-  }
-
-  button:disabled {
-    background: #999;
-    cursor: default;
-  }
-
-  #result {
-    margin-top: 28px;
-    font-size: 1.4rem;
-    font-weight: 700;
-    text-align: center;
-    min-height: 3rem;
-  }
-
-  #result.success {
-    color: #2c662d;
-  }
-
-  #result.warning {
-    color: #b58105;
-  }
-
-  #result.error {
-    color: #e63946;
-  }
-
-  @media (max-width: 400px) {
-    #app, #start-screen, #test-screen {
-      width: 95vw;
-      padding: 20px 15px 40px 15px;
-    }
-    #question-container {
-      padding: 15px 20px;
-      font-size: 1.1rem;
-    }
-    label.option-label {
-      font-size: 1rem;
-      padding: 10px 14px;
-    }
-    button, #start-btn {
-      font-size: 1.3rem;
-      padding: 16px 20px;
-      min-width: auto;
-      border-radius: 20px;
-    }
-    #name-input {
-      font-size: 1.2rem;
-      padding: 10px 12px;
-      max-width: 100%;
-      margin-bottom: 30px;
-    }
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Reservas de Mesas en el Bar</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<div id="start-screen" role="main" aria-label="Pantalla de inicio Test de Informática">
-  <h1>Bienvenido al Test de Informática</h1>
-  <input type="text" id="name-input" placeholder="Escribe tu nombre" aria-label="Nombre del participante" />
-  <button id="start-btn" aria-label="Comenzar test">Comenzar Test</button>
-</div>
+  <header>
+    Reservas de Mesas en el Bar
+  </header>
+  <main>
+    <div class="controls">
+      <button id="prevMonthBtn" aria-label="Mes anterior">&larr; Anterior</button>
+      <div class="month-year" id="monthYearLabel" aria-live="polite"></div>
+      <button id="nextMonthBtn" aria-label="Mes siguiente">Siguiente &rarr;</button>
+    </div>
+    <div class="calendar" role="grid" aria-label="Calendario de Reservas">
+      <div class="day-name" role="columnheader">Dom</div>
+      <div class="day-name" role="columnheader">Lun</div>
+      <div class="day-name" role="columnheader">Mar</div>
+      <div class="day-name" role="columnheader">Mié</div>
+      <div class="day-name" role="columnheader">Jue</div>
+      <div class="day-name" role="columnheader">Vie</div>
+      <div class="day-name" role="columnheader">Sáb</div>
+    </div>
+  </main>
 
-<div id="test-screen" role="main" aria-label="Formulario Test de Informática" tabindex="-1" style="display:none;">
-  <h1>Test de Informática</h1>
+  <button id="modoEncargadoBtn" class="modo-encargado-btn" aria-label="Opciones avanzadas"></button>
 
-  <div id="question-container" aria-live="polite" aria-atomic="true">
-    <div id="greeting" style="text-align:center; font-weight:700; font-size:1.3rem; margin-bottom:12px;"></div>
-    <div id="question-text"></div>
-    <form id="options-form" aria-describedby="instruction-text"></form>
+  <div class="modal" id="dayModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDescription">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modalTitle">Detalles del Día</h2>
+        <button class="close-btn" id="closeModalBtn" aria-label="Cerrar">&times;</button>
+      </div>
+      <div id="modalDescription" class="modal-description"></div>
+
+      <button id="toggleOpenCloseBtn" class="btn-toggle" style="display:none"></button>
+
+      <section class="form-section" aria-label="Reservas para el día seleccionado">
+        <h3>Reservas</h3>
+        <ul class="reservations-list" id="reservationsList">
+          <li class="empty-message">No hay reservas aún.</li>
+        </ul>
+      </section>
+
+      <section aria-label="Agregar reserva" class="form-section">
+        <h3>Agregar Reserva</h3>
+        <form id="addReservationForm">
+          <label for="resNameInput">Nombre del Cliente</label>
+          <input type="text" id="resNameInput" name="resName" required autocomplete="off" />
+          <label for="resTimeInput">Hora</label>
+          <input type="time" id="resTimeInput" name="resTime" required min="12:00" max="23:00" step="900" />
+          <label for="resGuestsInput">Número de Invitados</label>
+          <input type="number" id="resGuestsInput" name="resGuests" min="1" max="20" value="1" required />
+          <label for="resPinInput">Introduce una clave para tu reserva</label>
+          <input type="text" id="resPinInput" name="resPin" minlength="1" maxlength="20" required autocomplete="off" />
+          <button type="submit" class="btn-submit">Reservar Mesa</button>
+        </form>
+      </section>
+    </div>
   </div>
 
-  <div id="instruction-text" style="position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;">
-    Usa las flechas anterior y siguiente para navegar. Al finalizar pulsa Validar para comprobar tus respuestas.
+  <!-- Modal de confirmación -->
+  <div class="modal" id="confirmModal" role="dialog" aria-modal="true" style="display:none">
+    <div class="modal-content">
+      <h3>Confirmar Reserva</h3>
+      <p id="confirmText"></p>
+      <button id="confirmYesBtn">Confirmar</button>
+      <button id="confirmNoBtn">Cancelar</button>
+    </div>
   </div>
-
-  <div id="navigation">
-    <button id="prev-btn" type="button" aria-label="Pregunta anterior" disabled>Anterior</button>
-    <button id="next-btn" type="button" aria-label="Siguiente pregunta">Siguiente</button>
-  </div>
-
-  <button id="validate-btn" type="button" style="margin-top: 25px; display:none;">Validar</button>
-  <button id="reset-btn" type="button" style="margin-top: 10px; display:none;">Repetir Test</button>
-
-  <div id="result" role="status"></div>
-</div>
-
-<!-- Div del ranking -->
-<div id="ranking-container" style="display: none; margin-top: 30px; background: #fffcf7; border: 3px solid #f8b500; border-radius: 16px; padding: 20px;">
-  <h2 style="text-align: center; color: #e8590c; margin-bottom: 15px;">🏆 Top 10 Puntuaciones 🏆</h2>
-  <ol id="ranking-list" style="padding-left: 20px; font-size: 1.2rem;"></ol>
-</div>
-
-<script>
-// Configuración de Firebase
-const firebaseConfig = {
-  apiKey: "AIzaSyDC1wCcBLtqXNLRGfFQ1eOu_IsNjZ1jNRk",
-  authDomain: "test-7b9a3.firebaseapp.com",
-  databaseURL: "https://test-7b9a3-default-rtdb.firebaseio.com", // Añadí la URL de la Realtime Database
-  projectId: "test-7b9a3",
-  storageBucket: "test-7b9a3.appspot.com",
-  messagingSenderId: "512565028384",
-  appId: "1:512565028384:web:679c68e069fe4b0a6ebe45",
-  measurementId: "G-VG17V2SRZN"
-};
-
-// Inicializa Firebase
-firebase.initializeApp(firebaseConfig);
-const database = firebase.database();
-
-(() => {
-    const questions = [
-    {
-      question: "¿Qué es un ordenador?",
-      options: [
-        "Una máquina para cocinar",
-        "Un dispositivo para procesar información",
-        "Un instrumento musical"
-      ],
-      correct: 1
-    },
-    {
-      question: "¿Quién es el mejor profe de informática?",
-      options: [
-        "Hugo",
-        "Raul",
-        "Victor",
-        "Marco"
-      ],
-      correct: [0, 1, 2, 3]
-    },
-    {
-      question: "¿Qué es un mouse?",
-      options: [
-        "Un ratón para ordenador",
-        "Una tecla del teclado",
-        "Un software"
-      ],
-      correct: 0
-    },
-    {
-      question: "¿Qué componente del ordenador muestra imágenes?",
-      options: [
-        "El teclado",
-        "El monitor",
-        "El procesador"
-      ],
-      correct: 1
-    },
-    {
-      question: "¿Qué es un sistema operativo?",
-      options: [
-        "Un programa que administra el ordenador",
-        "Un tipo de ordenador",
-        "Una impresora"
-      ],
-      correct: 0
-    },
-    {
-      question: "¿Para qué sirve un navegador web?",
-      options: [
-        "Para navegar por Internet",
-        "Para hacer llamadas",
-        "Para imprimir documentos"
-      ],
-      correct: 0
-    },
-    {
-      question: "¿Qué es un archivo?",
-      options: [
-        "Una carpeta",
-        "Una unidad de almacenamiento",
-        "Un documento o conjunto de datos guardados"
-      ],
-      correct: 2
-    },
-    {
-      question: "¿Cómo debemos estructurar un informe formal?",
-      options: [
-        "Portada, índice y contenido",
-        "Índice, contenido y conclusión",
-        "Contenido, conclusión y bibliografía",
-      ],
-      correct: 0
-    },
-    {
-        question: "¿Qué es un teclado?",
-      options: [
-        "Una pantalla",
-        "Un dispositivo para introducir datos",
-        "Un altavoz"
-      ],
-      correct: 1
-    },
-    {
-      question: "¿Qué función tiene el botón derecho del mouse?",
-      options: [
-        "Abrir un menú contextual",
-        "Seleccionar texto",
-        "Cerrar el programa"
-      ],
-      correct: 0
-    },
-    {
-      question: "¿Qué tipo de archivo suele tener la extensión .jpg?",
-      options: [
-        "Una imagen",
-        "Un documento de texto",
-        "Un video"
-      ],
-      correct: 0
-    },
-    {
-        question: "¿Que es internet?",
-      options: [
-        "Un juego",
-        "Una red mundial de ordenadores",
-        "Un programa"
-      ],
-      correct: 1
-    },
-    {
-      question: "¿Qué tecla usas para borrar texto a la derecha del cursor?",
-      options: [
-        "Backspace",
-        "Enter",
-        "Supr (Delete)"
-      ],
-      correct: 2
-    },
-    {
-      question: "¿´Qué botón se usa para pegar un texto?",
-      options: [
-        "Ctrl + B",
-        "Ctrl + V",
-        "Crtl + A"
-      ],
-      correct: 1
-    },
-    {
-        question: "¿Para qué sirve el 'WhatsApp'?",
-      options: [
-        "Para enviar mensajes y llamadas",
-        "Para navegar en internet",
-        "Para editar fotos"
-      ],
-      correct: 0
-    },
-    {
-      question: "¿Qué es un 'email'?",
-      options: [
-        "Un correo electrónico",
-        "Un programa de dibujo",
-        "Un tipo de ordenador"
-      ],
-      correct: 0
-    },
-    {
-      question: "¿Qué es un 'software'?",
-      options: [
-        "El hardware del ordenador",
-        "Un programa o conjunto de instrucciones",
-        "Una parte física"
-      ],
-      correct: 1
-    },
-    {
-        question: "¿Qué botón se usa para copiar texto?",
-      options: [
-        "Ctrl + C",
-        "Ctrl + V",
-        "Ctrl + P"
-      ],
-      correct: 0
-    },
-    {
-      question: "¿Qué almacenan las 'cookies' en el ordenador?",
-      options: [
-        "Datos de navegación",
-        "Fotos",
-        "Música"
-      ],
-      correct: 0
-    },
-    {
-      question: "¿Qué hace el botón 'Enter'?",
-      options: [
-        "Cambia línea o ejecuta comandos",
-        "Borra texto",
-        "Abre un archivo"
-      ],
-      correct: 0
-    }
-  ];
-
-
-
-  // Elementos del DOM
-  const startScreen = document.getElementById('start-screen');
-  const testScreen = document.getElementById('test-screen');
-  const startBtn = document.getElementById('start-btn');
-  const nameInput = document.getElementById('name-input');
-  const greetingDiv = document.getElementById('greeting');
-  const questionText = document.getElementById('question-text');
-  const optionsForm = document.getElementById('options-form');
-  const prevBtn = document.getElementById('prev-btn');
-  const nextBtn = document.getElementById('next-btn');
-  const validateBtn = document.getElementById('validate-btn');
-  const resetBtn = document.getElementById('reset-btn');
-  const resultDiv = document.getElementById('result');
-
-  let currentQuestionIndex = 0;
-  const userAnswers = new Array(questions.length).fill(null);
-
-  function renderQuestion(index) {
-    const q = questions[index];
-    questionText.textContent = `${index + 1}. ${q.question}`;
-    optionsForm.innerHTML = '';
-
-    q.options.forEach((opt, i) => {
-      const inputId = `q${index}o${i}`;
-      const isChecked = (userAnswers[index] === i);
-      optionsForm.insertAdjacentHTML('beforeend',
-        `<label class="option-label" for="${inputId}">
-          <input type="radio" name="option" id="${inputId}" value="${i}" ${isChecked ? 'checked' : ''}>
-          ${opt}
-        </label>`
-      );
-    });
-
-    prevBtn.disabled = index === 0;
-    nextBtn.style.display = index === questions.length -1 ? 'none' : 'inline-block';
-    validateBtn.style.display = index === questions.length -1 ? 'inline-block' : 'none';
-    resultDiv.textContent = '';
-    resultDiv.className = "";
-  }
-
-  function saveAnswer() {
-    const selected = optionsForm.querySelector('input[name="option"]:checked');
-    if (selected) {
-      userAnswers[currentQuestionIndex] = parseInt(selected.value);
-    }
-  }
-
-  function scrollToQuestion() {
-    testScreen.scrollTo({top: 0, behavior: 'smooth'});
-  }
-
-  // Event listeners
-  startBtn.addEventListener('click', () => {
-    const name = nameInput.value.trim();
-    if(name === ""){
-      alert("Por favor, escribe tu nombre para comenzar el test.");
-      nameInput.focus();
-      return;
-    }
-    startScreen.style.display = 'none';
-    testScreen.style.display = 'flex';
-    greetingDiv.textContent = `Hola, ${name}! ¡Buena suerte!`;
-    renderQuestion(currentQuestionIndex);
-    scrollToQuestion();
-  });
-
-  prevBtn.addEventListener('click', () => {
-    saveAnswer();
-    if (currentQuestionIndex > 0) {
-      currentQuestionIndex--;
-      renderQuestion(currentQuestionIndex);
-      scrollToQuestion();
-    }
-  });
-
-  nextBtn.addEventListener('click', () => {
-    saveAnswer();
-    if (currentQuestionIndex < questions.length - 1) {
-      currentQuestionIndex++;
-      renderQuestion(currentQuestionIndex);
-      scrollToQuestion();
-    }
-  });
-
-  validateBtn.addEventListener('click', () => {
-    saveAnswer();
-
-    const unansweredQuestions = [];
-    for(let i=0; i<questions.length; i++){
-      if (userAnswers[i] === null) unansweredQuestions.push(i+1);
-    }
-    if(unansweredQuestions.length > 0){
-      alert(`Por favor responde la pregunta ${unansweredQuestions[0]} antes de validar.`);
-      currentQuestionIndex = unansweredQuestions[0] - 1;
-      renderQuestion(currentQuestionIndex);
-      scrollToQuestion();
-      return;
-    }
-
-    let correctCount = 0;
-    for(let i=0; i<questions.length; i++){
-      if(userAnswers[i] === questions[i].correct){
-        correctCount++;
-      }
-    }
-
-    const score = (correctCount / questions.length) * 10;
-    const scoreRounded = Math.round(score * 10) /10;
-
-    // Guardar la puntuación
-    const nombre = nameInput.value.trim();
-    guardarPuntuacion(nombre, scoreRounded);
-
-    if(scoreRounded === 5){
-      resultDiv.className = "warning";
-      resultDiv.textContent = `Justito, pero aprobaste. Nota: ${scoreRounded} / 10.`;
-    } else if(scoreRounded > 5 && scoreRounded <=7){
-      resultDiv.className = "success";
-      resultDiv.textContent = `Muy bien, aprobaste. Nota: ${scoreRounded} / 10.`;
-    } else if(scoreRounded > 7 && scoreRounded <=10){
-      resultDiv.className = "success";
-      resultDiv.textContent = `¡Enhorabuena! Eres un crack. Nota: ${scoreRounded} / 10.`;
-    } else {
-      resultDiv.className = "error";
-      resultDiv.textContent = `Suspendiste. Nota: ${scoreRounded} / 10. ¡Inténtalo otra vez!`;
-    }
-
-    validateBtn.style.display = 'none';
-    prevBtn.style.display = 'none';
-    nextBtn.style.display = 'none';
-    resetBtn.style.display = 'inline-block';
-  });
-
-  resetBtn.addEventListener('click', () => {
-    userAnswers.fill(null);
-    currentQuestionIndex = 0;
-    renderQuestion(currentQuestionIndex);
-    validateBtn.style.display = 'inline-block';
-    prevBtn.style.display = 'inline-block';
-    nextBtn.style.display = 'inline-block';
-    resetBtn.style.display = 'none';
-    resultDiv.textContent = '';
-    resultDiv.className = "";
-    scrollToQuestion();
-  });
-
-  // Funciones de Firebase
-  async function guardarPuntuacion(nombre, puntuacion) {
-    try {
-      await database.ref('puntuaciones').push({
-        nombre: nombre,
-        puntuacion: puntuacion,
-        fecha: firebase.database.ServerValue.TIMESTAMP
-      });
-      console.log("Puntuación guardada");
-      obtenerRanking();
-    } catch (error) {
-      console.error("Error al guardar:", error);
-    }
-  }
-
-  function obtenerRanking() {
-    database.ref('puntuaciones')
-      .orderByChild('puntuacion')
-      .limitToLast(10)
-      .once('value', (snapshot) => {
-        const ranking = [];
-        snapshot.forEach((child) => {
-          ranking.push(child.val());
-        });
-        ranking.sort((a, b) => b.puntuacion - a.puntuacion);
-        mostrarRanking(ranking);
-      });
-  }
-
-  function mostrarRanking(datos) {
-    const rankingList = document.getElementById('ranking-list');
-    if (!rankingList) return;
-    
-    rankingList.innerHTML = '';
-    datos.slice(0, 10).forEach((item, index) => {
-      const li = document.createElement('li');
-      li.innerHTML = `<strong>${index + 1}.</strong> ${item.nombre}: <span style="color: #e8590c;">${item.puntuacion}/10</span>`;
-      rankingList.appendChild(li);
-    });
-    
-    const rankingContainer = document.getElementById('ranking-container');
-    if (rankingContainer) {
-      rankingContainer.style.display = 'block';
-    }
-  }
-
-  // Mostrar ranking al cargar la página
-  window.addEventListener('load', obtenerRanking);
-})();
-</script>
+  <script src="script.js"></script>
 </body>
 </html>
+
