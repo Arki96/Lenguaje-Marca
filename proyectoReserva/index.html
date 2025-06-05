@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Reservas de Mesas en el Bar</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    Reservas de Mesas en el Bar
+  </header>
+  <main>
+    <div class="controls">
+      <button id="prevMonthBtn" aria-label="Mes anterior">&larr; Anterior</button>
+      <div class="month-year" id="monthYearLabel" aria-live="polite"></div>
+      <button id="nextMonthBtn" aria-label="Mes siguiente">Siguiente &rarr;</button>
+    </div>
+    <div class="calendar" role="grid" aria-label="Calendario de Reservas">
+      <div class="day-name" role="columnheader">Dom</div>
+      <div class="day-name" role="columnheader">Lun</div>
+      <div class="day-name" role="columnheader">Mar</div>
+      <div class="day-name" role="columnheader">Mié</div>
+      <div class="day-name" role="columnheader">Jue</div>
+      <div class="day-name" role="columnheader">Vie</div>
+      <div class="day-name" role="columnheader">Sáb</div>
+    </div>
+  </main>
+
+  <button id="modoEncargadoBtn" class="modo-encargado-btn" aria-label="Opciones avanzadas"></button>
+
+  <div class="modal" id="dayModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDescription">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modalTitle">Detalles del Día</h2>
+        <button class="close-btn" id="closeModalBtn" aria-label="Cerrar">&times;</button>
+      </div>
+      <div id="modalDescription" class="modal-description"></div>
+
+      <button id="toggleOpenCloseBtn" class="btn-toggle" style="display:none"></button>
+
+      <section class="form-section" aria-label="Reservas para el día seleccionado">
+        <h3>Reservas</h3>
+        <ul class="reservations-list" id="reservationsList">
+          <li class="empty-message">No hay reservas aún.</li>
+        </ul>
+      </section>
+
+      <section aria-label="Agregar reserva" class="form-section">
+        <h3>Agregar Reserva</h3>
+        <form id="addReservationForm">
+          <label for="resNameInput">Nombre del Cliente</label>
+          <input type="text" id="resNameInput" name="resName" required autocomplete="off" />
+          <label for="resTimeInput">Hora</label>
+          <input type="time" id="resTimeInput" name="resTime" required min="12:00" max="23:00" step="900" />
+          <label for="resGuestsInput">Número de Invitados</label>
+          <input type="number" id="resGuestsInput" name="resGuests" min="1" max="20" value="1" required />
+          <label for="resPinInput">Introduce una clave para tu reserva</label>
+          <input type="text" id="resPinInput" name="resPin" minlength="1" maxlength="20" required autocomplete="off" />
+          <button type="submit" class="btn-submit">Reservar Mesa</button>
+        </form>
+      </section>
+    </div>
+  </div>
+
+  <!-- Modal de confirmación -->
+  <div class="modal" id="confirmModal" role="dialog" aria-modal="true" style="display:none">
+    <div class="modal-content">
+      <h3>Confirmar Reserva</h3>
+      <p id="confirmText"></p>
+      <button id="confirmYesBtn">Confirmar</button>
+      <button id="confirmNoBtn">Cancelar</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
+
